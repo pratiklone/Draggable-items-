@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url("https://wallpapers.com/images/hd/dark-sky-1920-x-1080-wallpaper-jj5kk0rts23d7ykf.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+        }
+         .main {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 100px;
+
+      } 
+        .items{
+            height: 50px;
+            width: 50px;
+            background-color: rgb(255, 246, 246);
+            border-radius: 10px;
+            box-shadow: 4px 4px 4px black;
+
+
+        }
+        #right,#left{
+            height: 500px;
+            width: 500px;
+            background:linear-gradient(rgba(214, 203, 203, 0) ,rgba(128, 128, 128, 0.158),rgba(133, 129, 129, 0));
+            backdrop-filter: blur(0.2px);
+            border: dotted gray;
+            border-radius: 10%;
+            
+        }
+        #right,#left{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-direction: column;
+
+        }
+        .items{
+            display:flex ;
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+<div id="left">
+    <div draggable="true" class="items">Pratik</div>
+    <div draggable="true" class="items">Nilesh</div>
+    <div draggable="true" class="items">Aniket</div>
+    <div draggable="true" class="items">Vikas</div>
+    <div draggable="true" class="items">Sagar</div>
+    <div draggable="true" class="items">Harsh</div>
+</div>
+<div draggable="true" id="right"></div>
+
+    </div>
+    <script>
+       
+        const items = document.getElementsByClassName("items");
+        console.log(items);
+        const rightBox = document.getElementById("right");
+        const leftBox = document.getElementById("left");
+        let Selected = null;
+ 
+        for (let list of items) {
+         
+          list.addEventListener("dragstart", (e) => {
+            Selected = e.target;
+  
+            rightBox.addEventListener("dragover", (e) => {
+            e.preventDefault();
+          });
+  
+          rightBox.addEventListener("drop", (e) => {
+            rightBox.appendChild(Selected);
+          });
+  
+          leftBox.addEventListener("dragover", (e) => {
+            e.preventDefault();
+          });
+  
+          leftBox.addEventListener("drop", (e) => {
+            leftBox.appendChild(Selected);
+          });
+      });
+  }
+      </script>
+</body>
+</html>
